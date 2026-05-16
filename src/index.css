@@ -11,3 +11,11 @@
 body {
   background-color: var(--colorBackground);
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}

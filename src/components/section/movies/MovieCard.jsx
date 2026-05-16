@@ -1,18 +1,32 @@
-const MovieCard = ({ isSimple, imgSize }) => {
+import { useNavigate } from "react-router";
+
+const MovieCard = ({ isSimple, movieId, title, year, type, poster }) => {
+  const navigate = useNavigate();
+  const redirectMoviePage = () => {
+    navigate(`/movie-details/${movieId}`);
+  };
   return (
-    <div className="w-fit h-fit bg-[#D9D9D9] rounded-[10px] p-2.5 shrink-0">
-      <div>
+    <div
+      className="w-fit h-fit bg-[#D9D9D9] rounded-[10px] p-2.5 shrink-0 cursor-pointer hover:bg-(--colorBlue) hover:text-(--colorGray) transition duration-300"
+      onClick={redirectMoviePage}
+    >
+      <div
+        className={`min-h-65 flex justify-center items-center overflow-hidden rounded-[10px] ${isSimple ? "w-65" : "w-44"}`}
+      >
         <img
-          src="https://m.media-amazon.com/images/M/MV5BNWE5MGI3MDctMmU5Ni00YzI2LWEzMTQtZGIyZDA5MzQzNDBhXkEyXkFqcGc@._V1_QL75_UX380_CR0,1,380,562_.jpg"
-          alt=""
-          className={`rounded-[10px] w-${imgSize}`}
+          src={poster}
+          alt="Poster"
+          loading="lazy"
+          className={`rounded-[10px] hover:scale-[1.1] transition duration-300 ${isSimple ? "w-65" : "w-44"}`}
         />
       </div>
-      <div className={`${isSimple ? "hidden" : "block"} mt-2`}>
-        <p>Avengers End Game</p>
+      <div className={`${isSimple ? "hidden" : "block"} mt-2 max-w-44`}>
+        <p className="truncate">{title}</p>
         <div className="flex justify-between mt-1">
-          <p>2019</p>
-          <p className="block bg-(--colorOrange) rounded-full px-4">7.9</p>
+          <p>{year}</p>
+          <div className="bg-(--colorOrange) rounded-full w-25 h-6 flex justify-center items-center">
+            <p className="tracking-widest text-[13px] font-bold text-(--colorGray) leading-0">{type?.toUpperCase()}</p>
+          </div>
         </div>
       </div>
     </div>
