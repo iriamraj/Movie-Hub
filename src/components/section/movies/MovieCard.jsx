@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 
-const MovieCard = ({ isSimple, movieId, title, year, type, poster }) => {
+const MovieCard = ({ isSimple, movieId, title, year, type, poster, imgOpacity }) => {
   const navigate = useNavigate();
   const redirectMoviePage = () => {
     navigate(`/movie-details/${movieId}`);
@@ -11,13 +11,13 @@ const MovieCard = ({ isSimple, movieId, title, year, type, poster }) => {
       onClick={redirectMoviePage}
     >
       <div
-        className={`min-h-65 flex justify-center items-center overflow-hidden rounded-[10px] ${isSimple ? "w-65" : "w-44"}`}
+        className={`min-h-65 flex justify-center items-center overflow-hidden rounded-[10px] ${isSimple ? "w-65" : "w-44"} relative`}
       >
         <img
           src={poster}
           alt="Poster"
           loading="lazy"
-          className={`rounded-[10px] hover:scale-[1.1] transition duration-300 ${isSimple ? "w-65" : "w-44"}`}
+          className={`${imgOpacity || ""} rounded-[10px] hover:scale-[1.1] transition duration-300 ${isSimple ? "w-65" : "w-44"}`}
         />
       </div>
       <div className={`${isSimple ? "hidden" : "block"} mt-2 max-w-44`}>
@@ -25,7 +25,9 @@ const MovieCard = ({ isSimple, movieId, title, year, type, poster }) => {
         <div className="flex justify-between mt-1">
           <p>{year}</p>
           <div className="bg-(--colorOrange) rounded-full w-25 h-6 flex justify-center items-center">
-            <p className="tracking-widest text-[13px] font-bold text-(--colorGray) leading-0">{type?.toUpperCase()}</p>
+            <p className="tracking-widest text-[13px] font-bold text-(--colorGray) leading-0">
+              {type?.toUpperCase()}
+            </p>
           </div>
         </div>
       </div>
