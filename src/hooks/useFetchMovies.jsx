@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+
 const apiKey = import.meta.env.VITE_OMDB_API_KEY;
-let tempFetchData = [];
 const randomKeyword = [
   "Love",
   "Thriller",
@@ -29,42 +29,55 @@ function useFetchMovies(filterSelected, fetchCount) {
   const [fetchLoading, setFetchLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
 
-  let filter = "";
   useEffect(() => {
-    tempFetchData = [];
-    const randomNumber = Math.round(Math.random() * 10);
+    let isMounted = true;
+    const localAccumulator = [];
+
+    let currentFilter = filterSelected;
     if (filterSelected === "Random") {
-      filter = randomKeyword[randomNumber];
-    } else {
-      tempFetchData = [];
-      filter = filterSelected;
+      const randomNumber = Math.floor(Math.random() * randomKeyword.length);
+      currentFilter = randomKeyword[randomNumber];
     }
 
-    if (tempFetchData.length === 0) {
-      (async function fetchUrl() {
-        try {
-          for (let i = 1; i <= fetchCount; i++) {
-            const response = await fetch(
-              `https://www.omdbapi.com/?s=${filter}&page=${i}&apikey=${apiKey}`,
-            );
-            const data = await response.json();
-            if (data?.Response === "False") {
-              setFetchError(data?.Error);
-            } else {
-              data && tempFetchData.push(...data?.Search);
-            }
+    async function fetchAllPages() {
+      setFetchLoading(true);
+      setFetchError(null);
+
+      try {
+        for (let i = 1; i <= fetchCount; i++) {
+          if (!isMounted) return;
+
+          const response = await fetch(
+            `https://www.omdbapi.com/?s=${currentFilter}&page=${i}&apikey=${apiKey}`,
+          );
+          const data = await response.json();
+
+          if (data?.Response === "False") {
+            if (isMounted) setFetchError(data?.Error);
+            break;
+          } else if (data?.Search) {
+            localAccumulator.push(...data.Search);
           }
-          tempFetchData && setFetchData(tempFetchData);
-          setFetchLoading(false);
-        } catch (error) {
-          setFetchError(error);
+        }
+
+        if (isMounted) {
+          setFetchData(localAccumulator);
           setFetchLoading(false);
         }
-      })();
-    } else {
-      setFetchData(tempFetchData);
+      } catch (error) {
+        if (isMounted) {
+          setFetchError(error.message || error);
+          setFetchLoading(false);
+        }
+      }
     }
-  }, [filterSelected]);
+
+    fetchAllPages();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [filterSelected, fetchCount]);
 
   return [fetchData, fetchLoading, fetchError];
 }
