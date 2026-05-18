@@ -13,7 +13,7 @@ const Header = () => {
         <div
           id="header-search-bar"
           className="w-40 ml-10 bg-(--colorBlue) relative rounded-full px-5 py-1 text-(--colorGray) flex justify-center items-center cursor-pointer overflow-hidden hover:[&>div]:w-full hover:[&>div]:transition-all hover:[&>div]:duration-600"
-          onClick={() => navigate("/explore-movies")}
+          onClick={() => navigate("/explore-movies/Random")}
         >
           <p className="relative z-10">Explore More</p>
           <div className="absolute top-0 left-0 bg-(--colorOrange) w-0 h-full transition-all duration-600"></div>

@@ -1,48 +1,22 @@
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import MovieCard from "../../components/section/movies/MovieCard";
 import movieIcon from "../../assets/icons/movie-icon.svg";
 import FilterButton from "./FilterButton";
 import SearchBar from "../../components/common/SearchBar";
 import useFetchMovies from "../../hooks/useFetchMovies";
 import NotFoundError from "../../components/common/NotFoundError";
+import { useParams } from "react-router";
+import FilterContext from "../../context/FilterContext";
+
 const apiKey = import.meta.env.VITE_OMDB_API_KEY;
 
-// import useFetchMovies from "../../hooks/useFetchMovies";
-
-// const randomKeyword = [
-//   "Love",
-//   "Thriller",
-//   "Action",
-//   "Sci-Fi",
-//   "Drama",
-//   "Mystery",
-//   "Rom-Com",
-//   "Horror",
-//   "Fantasy",
-//   "Comedy",
-//   "Western",
-//   "Crime",
-//   "Adventure",
-//   "Biopic",
-//   "Musical",
-//   "Slasher",
-//   "Noir",
-//   "Satire",
-//   "Parody",
-//   "Epic",
-// ];
-
 const PageExploreMovies = () => {
-  const [movieList, setMovieList] = useState(null);
-  const [error, setError] = useState(null);
+  const { movieID, searchKeyword } = useParams();
   const [filterExpand, setFilterExpand] = useState(false);
-  const [filterSelected, setFilterSelected] = useState("Random");
+  const [filterSelected, setFilterSelected] = useContext(FilterContext);
+  
 
-  const [fetchData, fetchLoading, fetchError] = useFetchMovies(filterSelected, 2);
-
-  const retry = () => {
-    location.reload()
-  };
+  const [fetchData, fetchLoading, fetchError] = useFetchMovies(searchKeyword, 2);
 
   if (fetchLoading) {
     {
@@ -53,6 +27,10 @@ const PageExploreMovies = () => {
       return <section className="flex flex-wrap px-16 gap-8 gap-x-10">{arr}</section>;
     }
   }
+
+  const retry = () => {
+    location.reload();
+  };
 
   if (fetchError) {
     if (fetchError.message === "Failed to fetch") return <p>{fetchError}</p>;

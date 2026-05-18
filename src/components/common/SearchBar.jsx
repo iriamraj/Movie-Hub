@@ -8,10 +8,10 @@ const SearchBar = ({ filterSelected, setFilterSelected }) => {
   const navigate = useNavigate();
 
   const handelSearch = () => {
-    // if (searchValue !== "") {
-      navigate("/explore-movies");
+    if (searchValue !== "") {
+      navigate(`/explore-movies/${searchValue}`);
       setFilterSelected(searchValue);
-    // }
+    }
   };
 
   return (
