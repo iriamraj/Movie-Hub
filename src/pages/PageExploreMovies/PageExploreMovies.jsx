@@ -50,6 +50,7 @@ const PageExploreMovies = () => {
             return (
               <MovieCard
                 key={movie.imdbID}
+                movie={movie}
                 movieId={movie.imdbID}
                 title={movie.Title}
                 year={movie.Year}

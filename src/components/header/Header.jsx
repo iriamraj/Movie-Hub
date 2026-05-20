@@ -8,10 +8,9 @@ const Header = () => {
         Movie Hub
       </p>
       <nav className="flex gap-9 items-center font-['SN_Pro',sans-serif] tracking-widest text-[12px] font-medium [&>p]:cursor-pointer">
+        <a href="#section-favorite">Favorite</a>
         <a href="#section-movie">MOVIES</a>
         <a href="#section-shows">TV SHOWS</a>
-        <a href="#section-people"> PEOPLE</a>
-        <a href="#section-awards">AWARDS</a>
         <div
           id="header-search-bar"
           className="w-40 ml-10 bg-(--colorBlue) relative rounded-full px-5 py-1 text-(--colorGray) flex justify-center items-center cursor-pointer overflow-hidden hover:[&>div]:w-full hover:[&>div]:transition-all hover:[&>div]:duration-600"
