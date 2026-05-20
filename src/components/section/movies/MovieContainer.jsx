@@ -1,7 +1,11 @@
 import ShowMore from "./ShowMore";
 import MovieCard from "./MovieCard";
+import FavoriteListContext from "../../../context/FavoriteListContext";
+import { useContext } from "react";
 
 const MovieContainer = ({ sectionName, moviesData, loading, error }) => {
+  const [favoriteList, setFavoriteList] = useContext(FavoriteListContext);
+
   if (loading) return <p>Loading...</p>;
   if (error) {
     if (error.message === "Failed to fetch") return <p>{error}</p>;
@@ -16,6 +20,7 @@ const MovieContainer = ({ sectionName, moviesData, loading, error }) => {
           return (
             <MovieCard
               key={movie.imdbID}
+              movie={movie}
               movieId={movie.imdbID}
               imgSize={44}
               title={movie.Title}

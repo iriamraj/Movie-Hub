@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const apiKey = import.meta.env.VITE_OMDB_API_KEY;
 const randomKeyword = [
