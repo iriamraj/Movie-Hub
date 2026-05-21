@@ -1,9 +1,6 @@
-import { useContext } from "react";
-import SearchBar from "../common/SearchBar";
-import FilterContext from "../../context/FilterContext";
+import SearchBar from "../../../../../components/common/SearchBar";
 
 const SectionHero = () => {
-  const [filterSelected, setFilterSelected] = useContext(FilterContext);
   return (
     <section
       id="section-hero"
@@ -13,7 +10,7 @@ const SectionHero = () => {
         Millions of movies, TV shows and people to discover. <br />
         Explore now.
       </h1>
-      <SearchBar filterSelected={filterSelected} setFilterSelected={setFilterSelected} />
+      <SearchBar />
     </section>
   );
 };

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import NotFoundError from "../components/common/NotFoundError";
+import NotFoundError from "../../components/common/NotFoundError";
 
 const NotFound = () => {
   const navigate = useNavigate();

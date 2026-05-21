@@ -4,7 +4,10 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <header className="flex justify-between items-center px-16 py-5">
-      <p className="font-['MuseoModerno',sans-serif] font-bold cursor-pointer" onClick={() => navigate("/")}>
+      <p
+        className="font-['MuseoModerno',sans-serif] font-bold cursor-pointer"
+        onClick={() => navigate("/")}
+      >
         Movie Hub
       </p>
       <nav className="flex gap-9 items-center font-['SN_Pro',sans-serif] tracking-widest text-[12px] font-medium [&>p]:cursor-pointer">

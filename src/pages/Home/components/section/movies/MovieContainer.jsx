@@ -1,16 +1,22 @@
 import ShowMore from "./ShowMore";
-import MovieCard from "./MovieCard";
-import FavoriteListContext from "../../../context/FavoriteListContext";
-import { useContext } from "react";
+import MovieCard from "../../../../../components/common/MovieCard";
 
 const MovieContainer = ({ sectionName, moviesData, loading, error }) => {
-  const [favoriteList, setFavoriteList] = useContext(FavoriteListContext);
-
   if (loading) return <p>Loading...</p>;
   if (error) {
     if (error.message === "Failed to fetch") return <p>{error}</p>;
     if (error === "Movie not found!") return <p>{error}</p>;
   }
+
+  if (moviesData.length === 0)
+    return (
+      <div className="font-['Bai_Jamjuree',sans-serif] font-semibold">
+        <h2 className="my-4">{sectionName}</h2>
+        <p className="text-black/30 m-auto block">
+          {sectionName === "Favorite" ? "You have no Favorite Movies!" : "Movies not found!"}
+        </p>
+      </div>
+    );
 
   return (
     <div className="font-['Bai_Jamjuree',sans-serif] font-semibold">
@@ -30,7 +36,7 @@ const MovieContainer = ({ sectionName, moviesData, loading, error }) => {
             />
           );
         })}
-        <ShowMore sectionName={sectionName} />
+        {sectionName !== "Favorite" && <ShowMore sectionName={sectionName} />}
       </div>
     </div>
   );

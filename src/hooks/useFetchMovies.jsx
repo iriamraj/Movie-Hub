@@ -24,7 +24,7 @@ const randomKeyword = [
   "Epic",
 ];
 
-function useFetchMovies(filterSelected, fetchCount) {
+function useFetchMovies(fetchTerm, fetchCount) {
   const [fetchData, setFetchData] = useState(null);
   const [fetchLoading, setFetchLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
@@ -33,8 +33,8 @@ function useFetchMovies(filterSelected, fetchCount) {
     let isMounted = true;
     const localAccumulator = [];
 
-    let currentFilter = filterSelected;
-    if (filterSelected === "Random") {
+    let currentFilter = fetchTerm;
+    if (fetchTerm === "Random") {
       const randomNumber = Math.floor(Math.random() * randomKeyword.length);
       currentFilter = randomKeyword[randomNumber];
     }
@@ -44,19 +44,30 @@ function useFetchMovies(filterSelected, fetchCount) {
       setFetchError(null);
 
       try {
-        for (let i = 1; i <= fetchCount; i++) {
-          if (!isMounted) return;
+        if (!isMounted) return;
 
-          const response = await fetch(
-            `https://www.omdbapi.com/?s=${currentFilter}&page=${i}&apikey=${apiKey}`,
-          );
+        //If 'fetchCount' is empty then fetch single movie using movie id
+        if (!fetchCount) {
+          const response = await fetch(`https://www.omdbapi.com/?i=${fetchTerm}&apikey=${apiKey}`);
           const data = await response.json();
+          isMounted && setFetchData(data);
+          setFetchLoading(false);
 
-          if (data?.Response === "False") {
-            if (isMounted) setFetchError(data?.Error);
-            break;
-          } else if (data?.Search) {
-            localAccumulator.push(...data.Search);
+          return;
+        } else {
+          for (let i = 1; i <= fetchCount; i++) {
+            const response = await fetch(
+              `https://www.omdbapi.com/?s=${currentFilter}&page=${i}&apikey=${apiKey}`,
+            );
+            const data = await response.json();
+
+            if (data?.Response === "False") {
+              if (isMounted) setFetchError(data?.Error);
+              break;
+            } else if (data?.Search) {
+              //Marge all data in a single Array
+              localAccumulator.push(...data.Search);
+            }
           }
         }
 
@@ -77,7 +88,7 @@ function useFetchMovies(filterSelected, fetchCount) {
     return () => {
       isMounted = false;
     };
-  }, [filterSelected, fetchCount]);
+  }, [fetchTerm, fetchCount]);
 
   return [fetchData, fetchLoading, fetchError];
 }
