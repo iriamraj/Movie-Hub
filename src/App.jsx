@@ -19,15 +19,12 @@ function App() {
   const [searchBarText, setSearchBarText] = useState("");
   const [filterSelected, setFilterSelected] = useState("Random");
 
-  const [[favoriteList, setFavoriteList], favoriteLoading, favoriteError] =
-    useFetchLocalStorage("favoriteList");
+  const [favoriteList, setFavoriteList] = useFetchLocalStorage("favoriteList");
 
   return (
     <SearchContext.Provider value={[searchBarText, setSearchBarText]}>
       <FilterContext.Provider value={[filterSelected, setFilterSelected]}>
-        <FavoriteListContext.Provider
-          value={[[favoriteList, setFavoriteList], favoriteLoading, favoriteError]}
-        >
+        <FavoriteListContext.Provider value={[favoriteList, setFavoriteList]}>
           <BrowserRouter>
             <Header />
             <Routes>

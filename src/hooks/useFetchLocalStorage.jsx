@@ -1,29 +1,20 @@
 import { useEffect, useState } from "react";
 
 const useFetchLocalStorage = (localStorageKey) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [localData, setLocalData] = useState(loadLocalData);
-
-  function loadLocalData() {
-    let data = null;
+  const [localData, setLocalData] = useState(() => {
     try {
-      setLoading(true);
-      data = JSON.parse(localStorage.getItem(localStorageKey));
-      setLoading(false);
+      return JSON.parse(localStorage.getItem(localStorageKey)) || [];
     } catch (error) {
-      setError(error);
-      setLoading(false);
+      console.error(error);
     }
-    return data || [];
-  }
+  });
 
   //Updating LocalStorage when 'localData' changes
   useEffect(() => {
     localStorage.setItem("favoriteList", JSON.stringify(localData));
   }, [localData]);
 
-  return [[localData, setLocalData], loading, error];
+  return [localData, setLocalData];
 };
 
 export default useFetchLocalStorage;

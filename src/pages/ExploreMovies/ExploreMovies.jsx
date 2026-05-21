@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router";
 import MovieCard from "../../components/common/MovieCard";
-import movieIcon from "../../assets/icons/movie-icon.svg";
+import MovieIcon from "../../assets/icons/MovieIcon.svg";
 import FilterButton from "./FilterButton";
 import SearchBar from "../../components/common/SearchBar";
 import useFetchMovies from "../../hooks/useFetchMovies";
@@ -19,7 +19,7 @@ const PageExploreMovies = () => {
     {
       const arr = [];
       for (let i = 0; i < 20; i++) {
-        arr.push(<MovieCard key={i} poster={movieIcon} imgOpacity="opacity-10" />);
+        arr.push(<MovieCard key={i} poster={MovieIcon} imgOpacity="opacity-10" isDemo={true} />);
       }
       return <section className="flex flex-wrap px-16 gap-8 gap-x-10">{arr}</section>;
     }

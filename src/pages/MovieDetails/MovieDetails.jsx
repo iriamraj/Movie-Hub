@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
-import MovieCard from "../../components/common/MovieCard";
 import { useEffect, useState } from "react";
+import MovieCard from "../../components/common/MovieCard";
 import RatingCard from "./RatingCard";
 import useFetchMovies from "../../hooks/useFetchMovies";
 const apiKey = import.meta.env.VITE_OMDB_API_KEY;
@@ -37,7 +37,13 @@ const PageMovieDetails = () => {
       <div>
         <div className="flex gap-15">
           <div>
-            <MovieCard isSimple={true} imgSize={80} poster={movieDetails?.Poster} />
+            <MovieCard
+              isSimple={true}
+              imgSize={80}
+              poster={movieDetails?.Poster}
+              movieId={movieId}
+              movie={movieDetails}
+            />
           </div>
           <div className="w-full flex flex-col gap-3">
             <div className="w-full flex justify-between">

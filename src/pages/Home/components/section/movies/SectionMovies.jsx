@@ -8,8 +8,7 @@ import MovieCard from "../../../../../components/common/MovieCard";
 const apiKey = import.meta.env.VITE_OMDB_API_KEY;
 
 const SectionMovies = () => {
-  const [[favoriteList, setFavoriteList], favoriteLoading, favoriteError] =
-    useContext(FavoriteListContext);
+  const [favoriteList, setFavoriteList] = useContext(FavoriteListContext);
 
   //Calling 'useFetchMovies' hook
   const [marvelData, MarvelLoading, MarvelError] = useFetchMovies("Avengers", 1);
@@ -22,8 +21,6 @@ const SectionMovies = () => {
         <MovieContainer
           sectionName="Favorite"
           moviesData={favoriteList}
-          loading={favoriteLoading}
-          error={favoriteError}
         />
       </section>
 
