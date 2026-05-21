@@ -10,8 +10,9 @@ const MovieDetailSection = ({ movieDetails, children }) => {
     <div>
       {children.map((elem, i) => {
         return (
-          <p key={i}>
-            {elem}: <span className="font-medium">{movieDetails && movieDetails[elem]}</span>
+          <p key={i} className="fontInter">
+            {elem}:{" "}
+            <span className="font-medium fontInter">{movieDetails && movieDetails[elem]}</span>
           </p>
         );
       })}
@@ -32,7 +33,7 @@ const PageMovieDetails = () => {
   return (
     <section
       id="movie-details"
-      className="px-16 pt-20 font-['Bai_Jamjuree',sans-serif] flex flex-col gap-15"
+      className="px-16 pt-20 flex flex-col gap-15"
     >
       <div>
         <div className="flex gap-15">
@@ -47,14 +48,14 @@ const PageMovieDetails = () => {
           </div>
           <div className="w-full flex flex-col gap-3">
             <div className="w-full flex justify-between">
-              <p className="text-[12px]">{movieDetails?.Rated}</p>
-              <div className="px-3 py-1 bg-(--colorOrange) rounded-full flex justify-center items-center text-[10px] tracking-[0.2em] font-semibold text-(--colorGray)">
+              <p className="text-[12px] fontInter">{movieDetails?.Rated}</p>
+              <div className="px-3 py-1 bg-(--colorOrange) rounded-full flex justify-center items-center text-[10px] tracking-[0.2em] fontInter font-semibold text-(--colorWarmGray)">
                 {movieDetails?.Type?.toUpperCase()}
               </div>
             </div>
             <div>
-              <h2 className="text-3xl font-medium">{movieDetails?.Title}</h2>
-              <p className="text-[19px] font-medium">{movieDetails?.Plot}</p>
+              <h2 className="text-3xl font-semibold fontSync">{movieDetails?.Title}</h2>
+              <p className="text-[19px] fontInter font-medium">{movieDetails?.Plot}</p>
             </div>
             <MovieDetailSection movieDetails={movieDetails}>
               {["Released", "Genre", "Runtime"]}

@@ -5,7 +5,7 @@
   --colorBlack: #000000;
   --colorBlue: #465c88;
   --colorOrange: #ff7a30;
-  --colorGray: #e9e3df;
+  --colorWarmGray: #e9e3df;
 }
 
 body {
@@ -18,4 +18,15 @@ html {
 
 html::-webkit-scrollbar {
   display: none;
+}
+
+.fontSync {
+  font-family: "Syne", sans-serif;
+}
+.fontMuseoModerno {
+  font-family: "MuseoModerno", system-ui;
+}
+
+.fontInter {
+  font-family: "Inter", sans-serif;
 }
