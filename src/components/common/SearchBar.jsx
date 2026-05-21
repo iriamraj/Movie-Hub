@@ -1,16 +1,17 @@
 import { useContext } from "react";
-import SearchContext from "../../context/SearchContext";
 import { useNavigate } from "react-router";
 
-const SearchBar = ({ filterSelected, setFilterSelected }) => {
+//Contexts
+import SearchContext from "../../context/SearchContext";
+import FilterContext from "../../context/FilterContext";
+
+const SearchBar = () => {
   const [searchValue, setSearchValue] = useContext(SearchContext);
-  
   const navigate = useNavigate();
 
   const handelSearch = () => {
     if (searchValue !== "") {
       navigate(`/explore-movies/${searchValue}`);
-      setFilterSelected(searchValue);
     }
   };
 

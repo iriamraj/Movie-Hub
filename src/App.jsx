@@ -2,29 +2,27 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import Header from "./components/header/Header";
-import PageHome from "./pages/PageHome";
-import PageMovieDetails from "./pages/PageMovieDetails";
-import NotFound from "./pages/NotFound";
-import PageExploreMovies from "./pages/PageExploreMovies/PageExploreMovies";
 
+//Pages
+import PageHome from "./pages/Home/Home";
+import PageMovieDetails from "./pages/MovieDetails/MovieDetails";
+import NotFound from "./pages/NotFound/NotFound";
+import PageExploreMovies from "./pages/ExploreMovies/ExploreMovies";
+
+//Contexts
 import SearchContext from "./context/SearchContext";
 import FilterContext from "./context/FilterContext";
-
 import FavoriteListContext from "./context/FavoriteListContext";
+import useFetchLocalStorage from "./hooks/useFetchLocalStorage";
 
 function App() {
-  const [searchText, setSearchText] = useState("");
+  const [searchBarText, setSearchBarText] = useState("");
   const [filterSelected, setFilterSelected] = useState("Random");
-  const [favoriteList, setFavoriteList] = useState(() => {
-    return JSON.parse(localStorage.getItem("favoriteList")) || [];
-  });
-  
-  useEffect(() => {
-    localStorage.setItem("favoriteList", JSON.stringify(favoriteList));
-  }, [favoriteList]);
+
+  const [favoriteList, setFavoriteList] = useFetchLocalStorage("favoriteList");
 
   return (
-    <SearchContext.Provider value={[searchText, setSearchText]}>
+    <SearchContext.Provider value={[searchBarText, setSearchBarText]}>
       <FilterContext.Provider value={[filterSelected, setFilterSelected]}>
         <FavoriteListContext.Provider value={[favoriteList, setFavoriteList]}>
           <BrowserRouter>

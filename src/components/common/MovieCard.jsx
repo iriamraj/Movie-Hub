@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router";
-import favoriteOff from "../../../assets/icons/favorite-off.svg";
-import favoriteOn from "../../../assets/icons/favorite-on.svg";
 import { useContext } from "react";
-import FavoriteListContext from "../../../context/FavoriteListContext";
+import { useNavigate } from "react-router";
+import FavoriteListContext from "../../context/FavoriteListContext";
+import FavoriteOn from "../../assets/icons/FavoriteOn";
+import FavoriteOff from "../../assets/icons/FavoriteOff";
+import fallbackPoster from "../../assets/icons/MovieIcon.svg";
 
-const MovieCard = ({ isSimple, movie, movieId, title, year, type, poster, imgOpacity }) => {
+const MovieCard = ({ isSimple, movie, movieId, title, year, type, poster, imgOpacity, isDemo }) => {
   const [favoriteList, setFavoriteList] = useContext(FavoriteListContext);
   const navigate = useNavigate();
-
   const isFavorite = favoriteList?.some((elem) => elem.imdbID === movieId);
 
   const redirectMoviePage = () => {
@@ -23,6 +23,11 @@ const MovieCard = ({ isSimple, movie, movieId, title, year, type, poster, imgOpa
     }
   };
 
+  const handelPoster = poster && poster !== "N/A" ? poster : fallbackPoster;
+  const handleImageError = (e) => {
+    e.target.src = fallbackPoster;
+  };
+
   return (
     <div
       className="w-fit h-fit bg-[#D9D9D9] rounded-[10px] p-2.5 shrink-0 cursor-pointer hover:bg-(--colorBlue) hover:text-(--colorGray) transition duration-300"
@@ -32,15 +37,16 @@ const MovieCard = ({ isSimple, movie, movieId, title, year, type, poster, imgOpa
         className={`min-h-65 flex justify-center items-center overflow-hidden rounded-[10px] ${isSimple ? "w-65" : "w-44"} relative`}
       >
         <div
-          className="w-7 h-7 bg-(--colorGray) absolute top-[3%] right-[5%] z-20 rounded flex items-center justify-center shadow-[0_0_5px_1px_#00000040]"
+          className={`${isDemo && "hidden"} w-7 h-7 bg-(--colorGray) absolute top-[3%] right-[5%] z-20 rounded flex items-center justify-center shadow-[0_0_5px_1px_#00000040]`}
           onClick={handleFavorite}
         >
-          <img src={isFavorite ? favoriteOn : favoriteOff} alt="favorite" className="w-6" />
+          {isFavorite ? <FavoriteOn /> : <FavoriteOff />}
         </div>
         <img
-          src={poster}
+          src={handelPoster}
           alt="Poster"
           loading="lazy"
+          onError={handleImageError}
           className={`${imgOpacity || ""} rounded-[10px] hover:scale-[1.1] transition duration-300 ${isSimple ? "w-65" : "w-44"}`}
         />
       </div>
