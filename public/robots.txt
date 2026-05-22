@@ -1,0 +1,9 @@
+# /public/robots.txt
+User-agent: *
+Allow: /
+
+# Block incomplete search queries or internal API routes if any
+Disallow: /search?*
+Disallow: /api/
+
+Sitemap: https://movie-hub-one-iota.vercel.app/

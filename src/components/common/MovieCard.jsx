@@ -30,14 +30,14 @@ const MovieCard = ({ isSimple, movie, movieId, title, year, type, poster, imgOpa
 
   return (
     <div
-      className="w-fit h-fit bg-[#D9D9D9] rounded-[10px] p-2.5 shrink-0 cursor-pointer hover:bg-(--colorBlue) hover:text-(--colorGray) transition duration-300"
+      className="w-fit h-fit bg-[#D9D9D9] rounded-[10px] p-2.5 shrink-0 cursor-pointer hover:bg-(--colorBlue) hover:text-(--colorWarmGray) transition duration-300"
       onClick={redirectMoviePage}
     >
       <div
-        className={`min-h-65 flex justify-center items-center overflow-hidden rounded-[10px] ${isSimple ? "w-65" : "w-44"} relative`}
+        className={`min-h-66 flex justify-center items-center overflow-hidden rounded-[10px] ${isSimple ? "w-65" : "w-44"} relative`}
       >
         <div
-          className={`${isDemo && "hidden"} w-7 h-7 bg-(--colorGray) absolute top-[3%] right-[5%] z-20 rounded flex items-center justify-center shadow-[0_0_5px_1px_#00000040]`}
+          className={`${isDemo && "hidden"} w-7 h-7 bg-(--colorWarmGray) absolute top-[3%] right-[5%] z-5 rounded flex items-center justify-center shadow-[0_0_5px_1px_#00000040]`}
           onClick={handleFavorite}
         >
           {isFavorite ? <FavoriteOn /> : <FavoriteOff />}
@@ -47,15 +47,15 @@ const MovieCard = ({ isSimple, movie, movieId, title, year, type, poster, imgOpa
           alt="Poster"
           loading="lazy"
           onError={handleImageError}
-          className={`${imgOpacity || ""} rounded-[10px] hover:scale-[1.1] transition duration-300 ${isSimple ? "w-65" : "w-44"}`}
+          className={`${imgOpacity || ""} rounded-[10px] hover:scale-[1.1] transition duration-300 ${isSimple ? "min-w-65" : "min-w-44"} min-h-66`}
         />
       </div>
       <div className={`${isSimple ? "hidden" : "block"} mt-2 max-w-44`}>
-        <p className="truncate">{title}</p>
-        <div className="flex justify-between mt-1">
+        <p className="truncate fontSync font-semibold">{title}</p>
+        <div className="flex justify-between mt-1 text-[14px] font-medium tracking-wider">
           <p>{year}</p>
-          <div className="bg-(--colorOrange) rounded-full w-25 h-6 flex justify-center items-center">
-            <p className="tracking-widest text-[13px] font-bold text-(--colorGray) leading-0">
+          <div className="bg-(--colorOrange) rounded-full w-23 h-6 flex justify-center items-center">
+            <p className="tracking-[0.3em] text-[13px] fontInter text-(--colorWarmGray) leading-0">
               {type?.toUpperCase()}
             </p>
           </div>

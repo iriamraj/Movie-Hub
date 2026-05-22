@@ -10,8 +10,8 @@ const MovieContainer = ({ sectionName, moviesData, loading, error }) => {
 
   if (moviesData.length === 0)
     return (
-      <div className="font-['Bai_Jamjuree',sans-serif] font-semibold">
-        <h2 className="my-4">{sectionName}</h2>
+      <div>
+        <h2 className="my-4 fontSync font-semibold">{sectionName}</h2>
         <p className="text-black/30 m-auto block">
           {sectionName === "Favorite" ? "You have no Favorite Movies!" : "Movies not found!"}
         </p>
@@ -19,9 +19,9 @@ const MovieContainer = ({ sectionName, moviesData, loading, error }) => {
     );
 
   return (
-    <div className="font-['Bai_Jamjuree',sans-serif] font-semibold">
-      <h2 className="my-4">{sectionName}</h2>
-      <div className="w-full flex overflow-x-scroll gap-7">
+    <div className="">
+      <h2 className="my-4 fontSync font-semibold">{sectionName}</h2>
+      <div className="w-full h-fit flex overflow-x-scroll gap-7">
         {moviesData?.map((movie) => {
           return (
             <MovieCard

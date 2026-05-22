@@ -17,14 +17,14 @@ const SectionMovies = () => {
 
   return (
     <>
-      <section id="section-favorite" className="px-16 mb-10">
+      <section id="section-favorite" className="px-3 xl:px-16 mb-10">
         <MovieContainer
           sectionName="Favorite"
           moviesData={favoriteList}
         />
       </section>
 
-      <section id="section-movie" className="px-16 mb-10">
+      <section id="section-movie" className="px-3 xl:px-16 mb-10">
         <MovieContainer
           sectionName="Marvel"
           moviesData={marvelData}
@@ -39,7 +39,7 @@ const SectionMovies = () => {
         />
       </section>
 
-      <section id="section-shows" className="px-16 mb-10">
+      <section id="section-shows" className="px-3 xl:px-16 mb-10">
         <MovieContainer
           sectionName="Shows"
           moviesData={showsData}

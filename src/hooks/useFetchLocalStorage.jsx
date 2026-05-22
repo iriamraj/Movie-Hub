@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 
 const useFetchLocalStorage = (localStorageKey) => {
   const [localData, setLocalData] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem(localStorageKey)) || [];
-    } catch (error) {
-      console.error(error);
-    }
+    return JSON.parse(localStorage.getItem(localStorageKey)) || [];
   });
 
   //Updating LocalStorage when 'localData' changes

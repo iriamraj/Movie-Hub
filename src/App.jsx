@@ -1,3 +1,10 @@
+//Fonts
+import '@fontsource/syne/600.css';
+import '@fontsource/museomoderno/700.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 
