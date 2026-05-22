@@ -26,8 +26,8 @@ const PageExploreMovies = () => {
   }
 
   return (
-    <section className="flex flex-wrap px-16 gap-8 gap-x-10">
-      <div className="w-full flex justify-between items-center">
+    <section className="flex flex-wrap px-5 md:px-16 gap-8 gap-x-10">
+      <div className="w-full flex flex-col md:flex-row gap-6 justify-between items-center">
         <FilterButton
           searchKeyword={searchKeyword}
           filterExpand={filterExpand}
@@ -44,7 +44,7 @@ const PageExploreMovies = () => {
           <p>"Something went wrong!."</p>
         )
       ) : (
-        <div className="flex flex-wrap gap-8 gap-x-10">
+        <div className="flex flex-wrap gap-8 xl:gap-x-10 justify-center items-center lg:justify-">
           {fetchData?.map((movie) => {
             return (
               <MovieCard

@@ -31,13 +31,10 @@ const PageMovieDetails = () => {
   }
 
   return (
-    <section
-      id="movie-details"
-      className="px-16 pt-20 flex flex-col gap-15"
-    >
+    <section id="movie-details" className="px-5 lg:px-16 pt-20 flex flex-col gap-15 " >
       <div>
-        <div className="flex gap-15">
-          <div>
+        <div className="flex flex-col lg:flex-row gap-15">
+          <div className="flex justify-center items-center">
             <MovieCard
               isSimple={true}
               imgSize={80}
@@ -46,7 +43,7 @@ const PageMovieDetails = () => {
               movie={movieDetails}
             />
           </div>
-          <div className="w-full flex flex-col gap-3">
+          <div className="w-full flex flex-col gap-5">
             <div className="w-full flex justify-between">
               <p className="text-[12px] fontInter">{movieDetails?.Rated}</p>
               <div className="px-3 py-1 bg-(--colorOrange) rounded-full flex justify-center items-center text-[10px] tracking-[0.2em] fontInter font-semibold text-(--colorWarmGray)">
@@ -72,7 +69,7 @@ const PageMovieDetails = () => {
             <MovieDetailSection movieDetails={movieDetails}>{["BoxOffice"]}</MovieDetailSection>
           </div>
         </div>
-        <div className="flex justify-around flex-wrap gap-7 mt-15">
+        <div className="flex flex-col sm:flex-row justify-around flex-wrap gap-7 mt-15 items-center">
           {movieDetails?.Ratings?.map((rate, i) => {
             return <RatingCard key={i} source={rate.Source} value={rate.Value} />;
           })}

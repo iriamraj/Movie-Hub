@@ -21,7 +21,7 @@ const MovieContainer = ({ sectionName, moviesData, loading, error }) => {
   return (
     <div className="">
       <h2 className="my-4 fontSync font-semibold">{sectionName}</h2>
-      <div className="w-full flex overflow-x-scroll gap-7">
+      <div className="w-full h-fit flex overflow-x-scroll gap-7">
         {moviesData?.map((movie) => {
           return (
             <MovieCard

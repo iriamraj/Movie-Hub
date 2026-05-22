@@ -7,7 +7,7 @@ const SectionHero = () => {
       className="bg-(--colorBlue) flex flex-col items-center justify-center py-25 gap-10"
     >
       <h1 className="text-3xl fontSync font-semibold text-(--colorWarmGray) text-center">
-        Millions of movies, TV shows and people to discover. <br />
+        Millions of movies, TV shows and people to discover. <br className="hidden xl:block"/>
         Explore now.
       </h1>
       <SearchBar />

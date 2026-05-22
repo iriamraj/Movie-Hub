@@ -8,7 +8,7 @@ const FilterOption = ({ name }) => {
 const FilterButton = ({ searchKeyword, filterExpand, setFilterExpand }) => {
   return (
     <div
-      className={`w-40 h-10 relative border px-3 flex items-center justify-between ${filterExpand ? "rounded-t-2xl" : "rounded-2xl"} bg-(--colorBlue) text-(--colorWarmGray)`}
+      className={`order-2 lg:order-1 w-40 h-10 relative border px-3 flex items-center justify-between ${filterExpand ? "rounded-t-2xl" : "rounded-2xl"} bg-(--colorBlue) text-(--colorWarmGray)`}
       onClick={() => setFilterExpand(!filterExpand)}
     >
       <p className="w-30 truncate ">Filter: {searchKeyword}</p>

@@ -4,8 +4,6 @@ const RightArrow = () => {
       widths={25}
       height={25}
       fill="#000000"
-      width="800px"
-      height="800px"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >

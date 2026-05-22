@@ -37,7 +37,7 @@ const MovieCard = ({ isSimple, movie, movieId, title, year, type, poster, imgOpa
         className={`min-h-66 flex justify-center items-center overflow-hidden rounded-[10px] ${isSimple ? "w-65" : "w-44"} relative`}
       >
         <div
-          className={`${isDemo && "hidden"} w-7 h-7 bg-(--colorWarmGray) absolute top-[3%] right-[5%] z-20 rounded flex items-center justify-center shadow-[0_0_5px_1px_#00000040]`}
+          className={`${isDemo && "hidden"} w-7 h-7 bg-(--colorWarmGray) absolute top-[3%] right-[5%] z-5 rounded flex items-center justify-center shadow-[0_0_5px_1px_#00000040]`}
           onClick={handleFavorite}
         >
           {isFavorite ? <FavoriteOn /> : <FavoriteOff />}
@@ -47,7 +47,7 @@ const MovieCard = ({ isSimple, movie, movieId, title, year, type, poster, imgOpa
           alt="Poster"
           loading="lazy"
           onError={handleImageError}
-          className={`${imgOpacity || ""} rounded-[10px] hover:scale-[1.1] transition duration-300 ${isSimple ? "w-65" : "w-44"} h-66`}
+          className={`${imgOpacity || ""} rounded-[10px] hover:scale-[1.1] transition duration-300 ${isSimple ? "min-w-65" : "min-w-44"} min-h-66`}
         />
       </div>
       <div className={`${isSimple ? "hidden" : "block"} mt-2 max-w-44`}>
